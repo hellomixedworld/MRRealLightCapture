@@ -1,28 +1,34 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) mixed.world GmbH. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Anaglyph.DisplayCapture;
 
+// Even though it is a derivate of the  original Toolkit, I am keeping the original namespace.
 namespace Microsoft.MixedReality.Toolkit.LightingTools
 {
 	public class CameraCaptureMediaProjection : ICameraCapture
 	{
-		/// <summary>Which screen are we rendering?</summary>
+		/// <summary>Use the main camera here.</summary>
 		private Camera           sourceCamera;
-		/// <summary>Preferred resolution for taking pictures, note that resolutions are not guaranteed! Refer to CameraResolution for details.</summary>
+		/// <summary>Preferred resolution for taking pictures. The current MediaProjection API only supports 1024x1024.</summary>
 		private CameraResolution resolution;
 		/// <summary>Cache tex for storing the screen.</summary>
 		private Texture2D        captureTex  = null;
 		/// <summary>Is this ICameraCapture ready for capturing pictures?</summary>
 		private bool             ready       = false;
+		/// <summary>Is this ICameraCapture currently capturing an image?</summary>
 		private bool isCapturing = false;
 		/// <summary>For controlling which render layers get rendered for this capture.</summary>
 		private int              renderMask  = ~(1 << 31);
 		/// <summary>Cache for the source texture</summary>
 		private RawImage sourceTexture;
+
+		/// <summary>DisplayCaptureManager instance for capturing the MediaProjection API screen.</summary>
+		private DisplayCaptureManager displayCaptureManager;
 
 		/// <summary>
 		/// Is the camera completely initialized and ready to begin taking pictures?
@@ -45,9 +51,8 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 			}
 		}
 		/// <summary>
-		/// Field of View of the camera in degrees. This value is never ready until after 
-		/// initialization, and in many cases, isn't accurate until after a picture has
-		/// been taken. It's best to check this after each picture if you need it.
+		/// Field of View of the camera in degrees. This value is fixed at 82 degrees.
+		/// The Quest 3 MediaProjection API only supports 82 degrees at the moment.
 		/// </summary>
 		public float FieldOfView
 		{
@@ -64,6 +69,7 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 			sourceTexture = aSourceTexture;
 			renderMask   = aRenderMask;
 			sourceCamera = Camera.main;
+			displayCaptureManager = DisplayCaptureManager.Instance;
 		}
 
 		/// <summary>
@@ -76,8 +82,12 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 		public void Initialize(bool aPreferGPUTexture, CameraResolution aResolution, Action aOnInitialized)
 		{
 			resolution = aResolution;
-            resolution.size = new Vector2Int(1024, 1024);
+            resolution.size = new Vector2Int(1024, 1024); // The current MediaProjection API only supports 1024x1024.
             ready = true;
+			// register event handlers for the DisplayCaptureManager
+			displayCaptureManager.onStarted.AddListener(OnCaptureStarted);
+			displayCaptureManager.onNewFrame.AddListener(OnNewFrameAvailable);
+			displayCaptureManager.onStopped.AddListener(OnCaptureStopped);
 
 			if (aOnInitialized != null)
 			{
@@ -85,8 +95,26 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 			}
 		}
 
+		private void OnCaptureStarted()
+		{
+			ready = true;
+		}
+
+		private void OnNewFrameAvailable() 
+		{
+			// New frame is available in displayCaptureManager.ScreenCaptureTexture
+			isCapturing = true;
+			captureTex = displayCaptureManager.ScreenCaptureTexture;
+			isCapturing = false;
+		}
+
+		private void OnCaptureStopped()
+		{
+			isCapturing = false;
+			ready = false;
+		}
 		/// <summary>
-		/// Render the current scene to a texture.
+		/// Capture the current MediaProjection API screen.
 		/// </summary>
 		/// <param name="aSize">Desired size to render.</param>
 		private void GrabScreen(Vector2Int aSize)
@@ -121,12 +149,12 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 		public void RequestImage(Action<NativeArray<Color24>, Matrix4x4, int, int> aOnImageAcquired)
 		{
 			isCapturing = true;
-			Vector2Int size = resolution.size;
-			GrabScreen(size);
+			//Vector2Int size = resolution.size;
+			//GrabScreen(size);
 
 			if (aOnImageAcquired != null)
 			{
-				aOnImageAcquired(captureTex.GetRawTextureData<Color24>(), sourceCamera.transform.localToWorldMatrix, size.x, size.y);
+				aOnImageAcquired(captureTex.GetRawTextureData<Color24>(), sourceCamera.transform.localToWorldMatrix, resolution.size.x, resolution.size.y);
 			}
 			isCapturing = false;
 		}
@@ -137,24 +165,30 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 		/// <param name="onImageAcquired">This is the function that will be called when the image is ready. Texture is not guaranteed to be a Texture2D, could also be a WebcamTexture. Matrix is the transform of the device when the picture was taken.</param>
 		public void RequestImage(Action<Texture, Matrix4x4> aOnImageAcquired)
 		{
-			Vector2Int size = resolution.size;
-			GrabScreen(size);
+			
+/* 			Vector2Int size = resolution.size;
+			GrabScreen(size); */
+			isCapturing = true;
 
 			if (aOnImageAcquired != null && captureTex != null)
 			{
 				aOnImageAcquired(captureTex, sourceCamera.transform.localToWorldMatrix);
 			}
+			isCapturing = false;
 		}
 
 		/// <summary>
-		/// Done with the camera, free up resources!
+		/// Make sure to unregister event handlers for the DisplayCaptureManager.
 		/// </summary>
 		public void Shutdown()
 		{
-			if (captureTex != null)
+/* 			if (captureTex != null)
 			{
 				GameObject.Destroy(captureTex);
-			}
+			} */
+			displayCaptureManager.onStarted.RemoveListener(OnCaptureStarted);
+			displayCaptureManager.onNewFrame.RemoveListener(OnNewFrameAvailable);
+			displayCaptureManager.onStopped.RemoveListener(OnCaptureStopped);
 		}
 	}
 }
