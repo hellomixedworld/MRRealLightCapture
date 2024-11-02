@@ -83,12 +83,11 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 		{
 			resolution = aResolution;
             resolution.size = new Vector2Int(1024, 1024); // The current MediaProjection API only supports 1024x1024.
-            ready = true;
+            ready = false;
 			// register event handlers for the DisplayCaptureManager
 			displayCaptureManager.onStarted.AddListener(OnCaptureStarted);
 			displayCaptureManager.onNewFrame.AddListener(OnNewFrameAvailable);
-			displayCaptureManager.onStopped.AddListener(OnCaptureStopped);
-
+			displayCaptureManager.onStopped.AddListener(OnCaptureStopped);	
 			if (aOnInitialized != null)
 			{
 				aOnInitialized();
@@ -98,11 +97,13 @@ namespace Microsoft.MixedReality.Toolkit.LightingTools
 		private void OnCaptureStarted()
 		{
 			ready = true;
+			isCapturing = true;
 		}
 
 		private void OnNewFrameAvailable() 
 		{
 			// New frame is available in displayCaptureManager.ScreenCaptureTexture
+			ready = true;
 			isCapturing = true;
 			captureTex = displayCaptureManager.ScreenCaptureTexture;
 			isCapturing = false;
