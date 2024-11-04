@@ -27,6 +27,8 @@ namespace Anaglyph.DisplayCapture
 		public UnityEvent onPermissionDenied = new();
 		public UnityEvent onStopped = new();
 		public UnityEvent onNewFrame = new();
+		public UnityEvent onEncodingError = new();
+		public UnityEvent onEncodingComplete = new();
 
 		private unsafe sbyte* imageData;
 		private int bufferSize;
@@ -45,6 +47,12 @@ namespace Anaglyph.DisplayCapture
 
 			public void RequestCapture() => androidInstance.Call("requestCapture");
 			public void StopCapture() => androidInstance.Call("stopCapture");
+
+			public void StartEncoding() {
+				//androidInstance.Call("setupVideoOutput","screen_recording.mp4");
+				androidInstance.Call("requestEncoding");
+			}
+			public void StopEncoding() => androidInstance.Call("stopEncoding");
 
 			public unsafe sbyte* GetByteBuffer()
 			{
@@ -88,6 +96,17 @@ namespace Anaglyph.DisplayCapture
 			androidInterface.StopCapture();
 		}
 
+		// Screen Encoding
+		public void StartEncoding()
+		{
+			androidInterface.StartEncoding();
+		}
+
+		public void StopEncoding()
+		{
+			androidInterface.StopEncoding();
+		}
+
 		// Messages sent from Android
 
 #pragma warning disable IDE0051 // Remove unused private members
@@ -121,6 +140,17 @@ namespace Anaglyph.DisplayCapture
 		{
 			onStopped.Invoke();
 		}
+
+		private void OnEncodingError(){
+			onEncodingError.Invoke();
+			Debug.LogError("Encoding error");
+		}
+		private void OnEncodingComplete()
+		{
+			onEncodingComplete.Invoke();
+			Debug.Log("Encoding complete");
+		}
+
 #pragma warning restore IDE0051 // Remove unused private members
 	}
 }

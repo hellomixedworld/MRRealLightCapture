@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace mixed.world.meta.displaycapture.utils
 {
-    public class UIManager : MonoBehaviour
+    public class ToggleElements : MonoBehaviour
     {
         [SerializeField]
         private List<GameObject> toggleableObjects = new List<GameObject>();
