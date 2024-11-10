@@ -10,6 +10,7 @@ namespace Anaglyph.DisplayCapture
 		public static DisplayCaptureManager Instance { get; private set; }
 
 		public bool startScreenCaptureOnStart = true;
+		public bool RecordToFile {get; set;} = false;
 		public bool flipTextureOnGPU = false;
 
 		[SerializeField] private Vector2Int textureSize = new(1024, 1024);
@@ -28,7 +29,9 @@ namespace Anaglyph.DisplayCapture
 		public UnityEvent onStopped = new();
 		public UnityEvent onNewFrame = new();
 		public UnityEvent onEncodingError = new();
-		public UnityEvent onEncodingComplete = new();
+		public UnityEvent<string> onEncodingComplete = new();
+
+		public UnityEvent<string> onLogText = new();
 
 		private unsafe sbyte* imageData;
 		private int bufferSize;
@@ -59,6 +62,11 @@ namespace Anaglyph.DisplayCapture
 				AndroidJavaObject byteBuffer = androidInstance.Call<AndroidJavaObject>("getByteBuffer");
 				return AndroidJNI.GetDirectBufferAddress(byteBuffer.GetRawObject());
 			}
+
+			public string getOutputPath()
+			{
+				return androidInstance.Call<String>("getOutputPath");
+			}
 		}
 
 		private AndroidInterface androidInterface;
@@ -88,7 +96,15 @@ namespace Anaglyph.DisplayCapture
 
 		public void StartScreenCapture()
 		{
-			androidInterface.RequestCapture();
+			if (RecordToFile)
+			{
+				StartEncoding();
+			}
+			else
+			{
+				flipTextureOnGPU = true;
+				androidInterface.RequestCapture();
+			}
 		}
 
 		public void StopScreenCapture()
@@ -99,6 +115,7 @@ namespace Anaglyph.DisplayCapture
 		// Screen Encoding
 		public void StartEncoding()
 		{
+			flipTextureOnGPU = false;
 			androidInterface.StartEncoding();
 		}
 
@@ -141,14 +158,21 @@ namespace Anaglyph.DisplayCapture
 			onStopped.Invoke();
 		}
 
+		private void OnLogText(string text){
+			Debug.Log(text);
+			onLogText.Invoke(text);
+		}
+		
 		private void OnEncodingError(){
 			onEncodingError.Invoke();
 			Debug.LogError("Encoding error");
 		}
 		private void OnEncodingComplete()
 		{
-			onEncodingComplete.Invoke();
-			Debug.Log("Encoding complete");
+			string savedMp4 = androidInterface.getOutputPath();
+			onEncodingComplete.Invoke("Encoding complete " + savedMp4);
+
+			Debug.Log("Encoding complete " + savedMp4);
 		}
 
 #pragma warning restore IDE0051 // Remove unused private members

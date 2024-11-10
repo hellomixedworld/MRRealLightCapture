@@ -48,11 +48,13 @@ namespace mixed.world.meta.displaycapture
 
                 if (!ManifestContainsPermission(manifestNode, "android.permission.FOREGROUND_SERVICE") ||
                     !ManifestContainsPermission(manifestNode, "android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION") ||
-                    !ManifestContainsPermissionWithRemoval(manifestNode, "android.permission.READ_PHONE_STATE"))
+                    !ManifestContainsPermissionWithRemoval(manifestNode, "android.permission.READ_PHONE_STATE") ||
+                    !ManifestContainsPermission(manifestNode, "android.permission.WRITE_EXTERNAL_STORAGE"))
                 {
                     AddPermissionIfMissing(doc, manifestNode, "android.permission.FOREGROUND_SERVICE");
                     AddPermissionIfMissing(doc, manifestNode, "android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION");
                     AddPermissionWithRemovalIfMissing(doc, manifestNode, "android.permission.READ_PHONE_STATE");
+                    AddPermissionIfMissing(doc, manifestNode, "android.permission.WRITE_EXTERNAL_STORAGE");
                     manifestUpdated = true;
                 }
 

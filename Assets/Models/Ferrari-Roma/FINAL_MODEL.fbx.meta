@@ -1,0 +1,224 @@
+fileFormatVersion: 2
+guid: 6df6bafaf9eb7b04c8b3df13d75322ea
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CHROME
+    second: {fileID: 2100000, guid: 8577bf847fc0af34b87c3e70cbf46189, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020BadgeA_Material
+    second: {fileID: 2100000, guid: 3ca722ab9392dc24ba6e339423951bf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Base_Material
+    second: {fileID: 2100000, guid: b5ce933a1c5c9384c95d99bd6d2ca10c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Carbon2_Material
+    second: {fileID: 2100000, guid: d4badcdbedb2c1942ade22f4332614dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Coloured_Material
+    second: {fileID: 2100000, guid: 6a9667858437ee04d96c16028acafc72, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020EngineA_Material
+    second: {fileID: 2100000, guid: 40fe1294a1500db429b57a78adb021ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Grille1A_Material
+    second: {fileID: 2100000, guid: 6c9979a03c5f61f4ba9e2021e66e56a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Grille2A_Material
+    second: {fileID: 2100000, guid: 31ed4a0339449884c9e92b852458545d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Grille3A_Material
+    second: {fileID: 2100000, guid: 24ed05f53174fb04e98288a715a29d86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Grille4A_Material
+    second: {fileID: 2100000, guid: 6d3b9f536f53fc14693d6507b94bc15c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Grille5A_Material
+    second: {fileID: 2100000, guid: 0176008ef1474c344a50fd3899463b45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Grille6A_Material
+    second: {fileID: 2100000, guid: f3eb2d2901952164695a01e54e739953, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020InteriorA_Material
+    second: {fileID: 2100000, guid: fcbb51f01d3e27442b31dca76e8cf295, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020InteriorTillingA_Material
+    second: {fileID: 2100000, guid: a0c6446a84d491c46921ea09bac37add, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020InteriorTillingColourZoneA_Material
+    second: {fileID: 2100000, guid: 4eaeac4411180524995171a66bd660ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020LightA_Material
+    second: {fileID: 2100000, guid: 27609880f24eaed46bc99a0ea1b702b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020ManufacturerPlateA_Material
+    second: {fileID: 2100000, guid: 1c31ea518018ceb47804cee82dd597be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Paint_Material
+    second: {fileID: 2100000, guid: a790cd7f0c83b274692f1d5ae1d78f6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020SeatBelt_Material
+    second: {fileID: 2100000, guid: 3ec14dee5c7714e48b047c2d9fbe00b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020Window_Material
+    second: {fileID: 2100000, guid: 0306ae7d167ff0042915a0ed3bd26cbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020_CallipersCalliperGloss_Material
+    second: {fileID: 2100000, guid: f0dc8996bc0f9064d98404c75fb69c2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ferrari_RomaRewardRecycled_2020_Wheel1A_3D_3DWheel2A_Material
+    second: {fileID: 2100000, guid: 31221d2e10c8b244ca012d05b8d071f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RED_GLASS
+    second: {fileID: 2100000, guid: dd15a429620dabf449c844ba89708c02, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
