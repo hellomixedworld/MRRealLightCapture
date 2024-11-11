@@ -13,7 +13,13 @@
 - **Directional Light Adjustment**: Calculates the brightest point in the cubemap for optimal directional lighting.
 
 ---
+## Demo
 
+[![Demo Video](./Thumbnail-MRLIGHT.png)](https://youtube.com/shorts/TlzenHmJoWQ)
+
+Watch the demo video to see Camera Passthrough + Realtime Light Estimation on Quest 3!
+
+---
 ## Getting Started
 
 ### Prerequisites
